@@ -8,7 +8,7 @@
 int stack_precedence(char ch){
     if(ch == '+' || ch == '-')
         return 2;
-    else if (ch == '*' || ch == '/')
+    else if (ch == '*' || ch == '/' || ch == '%')
         return 4;
     else if(ch == '$' || ch == '^')
         return 5;
