@@ -1,4 +1,4 @@
-/*Hello, Varun Here. So, this is a menu-driven program to show the implementations of stack operation:
+/*Hello, Varun Here. So, this is a menu-driven program to show the  of stack operation:
 1. Push an Element
 2.Pop an element
 3.Display Stack ELements.
@@ -6,38 +6,22 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#define SIZE 0x7f
+#define MAX 5
 struct stack 
 {
     int top;
-    int data[SIZE];
+    int data[MAX];
 } typedef STACK;
 
 void push(STACK *s, int ele){
-    if (s->top==SIZE - 1){
-        printf("Stack Overflow!\n");
-    }else{
-        s->data[++s->top] = ele;
-        printf("%d, pushed to the Stack position %d\n", s->data[s->top], s->top);
-    }
+    s->data[++s->top] = ele;
+    printf("%d, pushed to the Stack position %d\n", s->data[s->top], s->top);
 }
 
 void pop(STACK *s){
-    char ch[3];
-    if(s->top==-1){
-        printf("Stack Underflow!\n");
-    }else{
-        printf("Are you sure? (y/n) : ");
-        scanf("%s", ch);
-        if(ch[0] == 'y'){
-            printf("%d at the position %d was popped from the stack.\n",s->data[s->top], s->top);
-            s->data[s->top] = INT_MIN;
-            s->top--;
-        }else{
-            printf("Couldn't pop %d.\n", s->data[s->top]);
-            return;
-        }
-    }
+    printf("%d at the position %d was popped from the stack.\n",s->data[s->top], s->top);
+    s->data[s->top] = INT_MIN;
+    s->top--;
 }
 
 void display(STACK s){
@@ -68,12 +52,20 @@ int main(void){
         switch (choice)
         {
         case 1:
-            printf("Enter the Element:  ");
-            scanf("%d", &ele);
-            push(&s, ele);
+            if (s.top==MAX - 1){
+                printf("Stack Overflow!\n");
+            }else{
+                printf("Enter the Element:  ");
+                scanf("%d", &ele);
+                push(&s, ele);
+            }
             break;
         case 2:
-            pop(&s);
+            if(s.top==-1)
+                printf("Stack Underflow!\n");
+            else{
+                pop(&s);
+            }
             break;
         case 3:
             display(s);
@@ -83,7 +75,6 @@ int main(void){
             exit(0);
         default:
             printf("Invalid choice!");
-            break;
         }
         getchar();
         printf("\nPress any Key: ");
