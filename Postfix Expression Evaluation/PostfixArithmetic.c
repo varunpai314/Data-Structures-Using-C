@@ -1,50 +1,43 @@
+//a program to evaluate the value of a postfix expression. eg: 23*54*+9- = 17
+
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 #include<math.h>
 #include<string.h>
 
-
-float eval(char op, float num2, float num1){
-    switch (op)
-    {
-    case '+': return num1+num2;
-    case '-': return num1-num2;
-    case '*': return num1*num2;
-    case '/': return num1/num2;
-    case '%': return (int)num1% (int)num2;
-    case '^': return pow(num1,num2);
-    case '$': return pow(num1,num2);    
-    default:
-        break;
-    }
-    return INT_MIN;
+int eval(char ch, int n1, int n2){
+	switch(ch){
+		case '+': return n1 + n2;
+		case '-': return n1 - n2;
+		case '*': return n1 * n2;
+		case '/': return n1 / n2;
+		case '%': return fmod(n1, n2);
+		case '$':
+		case '^': return pow(n1, n2);
+	}
+	return ch - '0';
 }
 
+int main(){
+	char postfix[30];
+	int top, i, n1, n2, n3, stk[30];
+	top = -1;
+	printf("Enter a postfix expression: ");
+	scanf("%s", postfix);
+	for(i = 0; i < strlen(postfix); i++){
+		if(isdigit(postfix[i]))
+			stk[++top] = postfix[i] - '0';
+		else{
+			n2 = stk[top--];
+			n1 = stk[top--];
+			n3 = eval(postfix[i], n1, n2);
+			stk[++top] = n3;
+		}
+	}
+	printf("The value of the postfix expression is: %d\n", stk[top]);
+	
+	
 
-int main(char* argv[]){
-    int len = strlen(argv[0]);
-    float *st_point = (float*)malloc(len * sizeof(float));
-    int top = -1;
-    if (st_point == NULL) {
-        printf("Memory could not be allocated for the expression.\n");
-        exit(0);
-    }
-    for (int i = 0; i <= len; i++){
-        char ch = argv[0][i];
-        if(isdigit(ch)){
-            st_point[++top] = ch - '0';
-        }
-        else{
-            float result = eval(ch, st_point[top--], st_point[top--]);
-            st_point[top] = result;
-        }
-    }
-    float final = st_point[top--];
-    if(top == -1){
-        printf("%f", final);
-    }
-    else{
-        printf("Invalid Postfix Expression provided!\n");
-    }
-    return 0;
+	return 0;
 }

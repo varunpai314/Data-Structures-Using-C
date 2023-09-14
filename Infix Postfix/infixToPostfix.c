@@ -6,35 +6,35 @@
 #include<string.h>
 
 int stack_precedence(char ch){
-    if(ch == '+' || ch == '-')
-        return 2;
-    else if (ch == '*' || ch == '/' || ch == '%')
-        return 4;
-    else if(ch == '$' || ch == '^')
-        return 5;
-    else if(isalnum(ch))
+    switch (ch)
+    {
+    case '+':
+    case '-': return 2;
+    case '*':
+    case '%':
+    case '/': return 4;
+    case '$':
+    case '^': return 5;
+    case '(': return 0;
+    case '#': return -1;    
+    default:
         return 8;
-    else if(ch == '(')
-        return 0;
-    else if(ch == '#')
-        return -1;
-    else return INT_MIN;
+    }
 }
 
 int input_precedence(char ch){
-    if(ch == '+' || ch == '-')
-        return 1;
-    else if (ch == '*' || ch == '/')
-        return 3;
-    else if(ch == '$' || ch == '^')
-        return 6;
-    else if(isalnum(ch))
-        return 7;
-    else if(ch == '(')
-        return 9;
-    else if(ch == ')')
-        return 0;
-    else return INT_MIN;
+    switch(ch){
+        case '+':
+        case '-': return 1;
+        case '*':
+        case '%':
+        case '/': return 3;
+        case '$':
+        case '^': return 6;
+        case '(': return 9;
+        case ')': return 0;
+        default: return 7;
+    }
 }
 
 void infixtopostfix(char infix[], char postfix[]){
@@ -55,15 +55,16 @@ void infixtopostfix(char infix[], char postfix[]){
     while(stk[top] != '#')
         postfix[j++] = stk[top--];
     postfix[j] = '\0';
-    printf("\nPostfix form of %s is:\n%s\n", infix, postfix);
+    
 }
 
 int main(){
-    system("cls");
+    system("cls");//not necessary. Just for clearing the screen.
     char infix_exp[30];
     char postfix_exp[30];
     printf("Enter the infix expression: !!Warning. Do not use any whitespaces!!\n");
     scanf("%s", infix_exp);
     infixtopostfix(infix_exp, postfix_exp);
+    printf("\nPostfix form of `%s` is:\n%s\n", infix_exp, postfix_exp);
     return 0;
 }
