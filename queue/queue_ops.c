@@ -11,7 +11,7 @@ struct queue{
 
 void enqueue(QUEUE *q){
     int ele;
-    if(q->rear == MAX -1){
+    if(q->rear == MAX -1 && q->front == 0){
         printf("QUEUE OVERFLOW!!\n");
         return;
     }

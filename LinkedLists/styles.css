@@ -1,0 +1,57 @@
+/* Add your global styles here */
+
+/* Styles for header */
+header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styles for main content */
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Styles for sign-up and sign-in sections */
+section {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Adjust the styles for smaller screens */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    section {
+        margin-bottom: 20px;
+    }
+}

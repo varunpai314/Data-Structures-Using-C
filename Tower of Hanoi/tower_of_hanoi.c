@@ -2,7 +2,7 @@
 Recursion - method of solving a computational problem where the solution depends on solutions to smaller instances of the same problem.*/
 
 #include<stdio.h>
-
+#include<stdlib.h>
 void transfer(int n, char s, char t, char d){
     if(n == 0){
         return;
@@ -13,7 +13,7 @@ void transfer(int n, char s, char t, char d){
 }
 
 int main(void){
-    system("cls");
+    system("clear");
     int n;
     printf("Enter the number of disks: ");
     scanf("%d", &n);
