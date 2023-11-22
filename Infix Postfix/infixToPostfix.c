@@ -2,7 +2,6 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include<ctype.h>
 #include<string.h>
 
 int stack_precedence(char ch){
@@ -37,7 +36,7 @@ int input_precedence(char ch){
     }
 }
 
-void infixtopostfix(char infix[], char postfix[]){
+void infixtopostfix(char infix[20], char postfix[20]){
     int i, j, top;
     char stk[30], symbol;
     top = -1;
@@ -51,17 +50,16 @@ void infixtopostfix(char infix[], char postfix[]){
             stk[++top] = symbol;
         else
             top--;
-    }
+    
     while(stk[top] != '#')
         postfix[j++] = stk[top--];
     postfix[j] = '\0';
-    
+    }
 }
 
 int main(){
     system("cls");//not necessary. Just for clearing the screen.
-    char infix_exp[30];
-    char postfix_exp[30];
+    char infix_exp[30], postfix_exp[30];
     printf("Enter the infix expression: !!Warning. Do not use any whitespaces!!\n");
     scanf("%s", infix_exp);
     infixtopostfix(infix_exp, postfix_exp);

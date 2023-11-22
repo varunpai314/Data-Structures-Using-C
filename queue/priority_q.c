@@ -102,6 +102,7 @@ int main(){
             getchar();
         }
     }while(order != 'A' && order != 'a' && order != 'B' && order != 'b');
+    getchar();
     printf("Press enter to continue:");
     getchar();
     while (1){
